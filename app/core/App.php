@@ -10,18 +10,22 @@ class App
     {
         $url = $this->parseUrl();
 
-        // Controller
+        // 1. Cek Controller (Pakai __DIR__ biar ketemu filenya)
+        // __DIR__ . '/../controllers/' artinya: dari folder core, mundur ke app, masuk controllers
         if (isset($url[0])) {
-            if (file_exists('../app/controllers/' . ucfirst($url[0]) . '.php')) {
+            if (file_exists(__DIR__ . '/../controllers/' . ucfirst($url[0]) . '.php')) {
                 $this->controller = ucfirst($url[0]);
                 unset($url[0]);
             }
         }
 
-        require_once '../app/controllers/' . $this->controller . '.php';
+        // 2. Panggil Controller (Ini yang bikin error tadi)
+        require_once __DIR__ . '/../controllers/' . $this->controller . '.php';
+        
+        // Instansiasi Controller
         $this->controller = new $this->controller;
 
-        // Method
+        // 3. Cek Method
         if (isset($url[1])) {
             if (method_exists($this->controller, $url[1])) {
                 $this->method = $url[1];
@@ -29,10 +33,10 @@ class App
             }
         }
 
-        // Params
+        // 4. Params
         $this->params = $url ? array_values($url) : [];
 
-        // Run
+        // 5. Jalankan
         call_user_func_array([$this->controller, $this->method], $this->params);
     }
 

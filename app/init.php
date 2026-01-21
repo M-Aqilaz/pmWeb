@@ -1,6 +1,7 @@
 <?php
 
-require_once 'config/config.php'; // Tambahkan konfigurasi DB
-require_once 'core/App.php';
-require_once 'core/Controller.php';
-require_once 'core/Database.php'; // Tambahkan ini agar class Database dikenali
+// TAMBAHKAN __DIR__ . DI SEMUA BARIS
+require_once __DIR__ . '/config/config.php';
+require_once __DIR__ . '/core/App.php';
+require_once __DIR__ . '/core/Controller.php';
+require_once __DIR__ . '/core/Database.php';

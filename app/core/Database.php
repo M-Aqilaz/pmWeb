@@ -13,7 +13,7 @@ class Database {
     public function __construct()
     {
         // PERUBAHAN DISINI: Gunakan 'pgsql:' bukan 'mysql:'
-        $dsn = 'pgsql:host=' . $this->host . ';port=' . $this->port . ';dbname=' . $this->db_name;
+        $dsn = 'pgsql:host=' . $this->host . ';port=' . $this->port . ';dbname=' . $this->db_name . ';sslmode=require';
 
         $option = [
             PDO::ATTR_PERSISTENT => true,

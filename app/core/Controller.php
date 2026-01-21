@@ -4,12 +4,14 @@ class Controller
 {
     public function view($view, $data = [])
     {
-        require_once '../app/views/' . $view . '.php';
+        // Pakai __DIR__ untuk memanggil View
+        require_once __DIR__ . '/../views/' . $view . '.php';
     }
 
     public function model($model)
     {
-        require_once '../app/models/' . $model . '.php';
+        // Pakai __DIR__ untuk memanggil Model
+        require_once __DIR__ . '/../models/' . $model . '.php';
         return new $model();
     }
 }
